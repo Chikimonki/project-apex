@@ -1,0 +1,66 @@
+cd ~/project-apex
+
+# Initialize git
+git init
+git config user.name "Chikimonki"
+git config user.email "pan283@gmail.com"
+
+# Create .gitignore
+cat > .gitignore << 'EOF'
+# Build artifacts
+*.so
+*.o
+*.a
+test_can
+can_decoder_test
+*.exe
+
+# Cache
+.cache/
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store
+*.swp
+*~
+
+# Secrets
+*.pem
+*.key
+config/secrets.json
+
+# Logs
+*.log
+EOF
+
+# Create README
+cat > README.md << 'EOF'
+# 🏎️ APEX — Formula Student Telemetry Stack
+
+**936 million CAN frames per second. On a laptop. Open source.**# Build artifacts
+*.so
+*.o
+*.a
+test_can
+can_decoder_test
+*.exe
+
+# Cache
+.cache/
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store
+*.swp
+*~
+
+# Secrets
+*.pem
+*.key
+config/secrets.json
+
+# Logs
+*.log
+_scratch/
