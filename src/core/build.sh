@@ -1,42 +1,47 @@
 #!/bin/bash
-# build_can_decoder.sh — FINAL WORKING VERSION
-
 set -e
 
-echo "🏁 Building CAN decoder for Zig 0.15.2 nightly..."
+echo "🏁 Building APEX telemetry stack..."
 echo ""
 
-# Clean
-rm -f libcan_decoder.so can_decoder_test *.o
-
-# Build shared library (no main() function)
-echo "📦 Building shared library..."
+# Build CAN decoder
+echo "📦 Building CAN decoder..."
 zig build-lib can_decoder.zig \
     -dynamic \
     -O ReleaseFast \
     -femit-bin=libcan_decoder.so
 
 echo "✅ libcan_decoder.so built"
-file libcan_decoder.so
 
-# Build test harness (optional)
-echo ""
-echo "🧪 Building test harness..."
-zig build-exe can_decoder_test.zig \
+# Build Kalman filter library
+echo "📦 Building Kalman filter..."
+zig build-lib kalman_filter.zig \
+    -dynamic \
     -O ReleaseFast \
-    -femit-bin=can_decoder_test
+    -femit-bin=libkalman.so
 
-echo "✅ can_decoder_test built"
+echo "✅ libkalman.so built"
 
-# Run standalone test
-echo ""
-echo "Running standalone test..."
-./can_decoder_test
-
-# Check exported symbols
-echo ""
-echo "🔗 Exported symbols:"
-nm -D libcan_decoder.so 2>/dev/null | grep -E "test_add|get_version|processCANStream" || true
+# Build test harnesses
+echo "🧪 Building tests..."
+zig build-exe can_decoder_test.zig -O ReleaseFast -femit-bin=test_can
+zig build-exe kalman_test.zig -O ReleaseFast -femit-bin=test_kalman
 
 echo ""
-echo "✨ Ready for LuaJIT FFI testing!"
+echo "🔗 Exported symbols (CAN):"
+nm -D libcan_decoder.so | grep " T " | head -5
+
+echo ""
+echo "🔗 Exported symbols (Kalman):"
+nm -D libkalman.so | grep " T " | head -5
+
+echo ""
+echo "═══════════════════════════════"
+echo "Running tests..."
+echo "═══════════════════════════════"
+
+./test_can
+./test_kalman
+
+echo ""
+echo "✨ Build complete!"
