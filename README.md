@@ -1,5 +1,9 @@
 # 🏎️ APEX — Formula Student Telemetry Stack
 
+Video Demonstration: https://youtu.be/5NViE8uAu10
+
+Graphic Live Feed: https://storage.googleapis.com/groq-chat-api-signal-processing-suite/apex-dashboard/index.html
+
 **895 million CAN frames per second. Almost hit 1 billion.**
 
 ## Performance (Verified)
