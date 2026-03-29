@@ -1,5 +1,7 @@
 # 🏎️ APEX — Formula Student Telemetry Stack
 
+Built with Zig + LuaJIT + Perl + Julia + Python
+
 Video Demonstration: https://youtu.be/5NViE8uAu10
 
 View App: https://storage.googleapis.com/groq-chat-api-signal-processing-suite/apex-dashboard/index.html
