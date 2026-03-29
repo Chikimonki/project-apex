@@ -16,7 +16,7 @@ pub fn decodeWheelSpeed(frame: CANFrame) f32 {
     return 0.0;
 }
 
-pub export fn processCANStream(
+pub export fn decode_can_frame(input: [*]u8, input_len: usize, output: [*]u8, output_len: usize) usize {
     frames: [*]const CANFrame,
     count: usize,
     wheel_speeds: [*]f32,
