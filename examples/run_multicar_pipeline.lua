@@ -1,0 +1,95 @@
+#!/usr/bin/env luajit
+-- Multi-car dramatic lap pipeline
+
+local car = os.getenv("CAR_NAME") or "Ferrari 488 Challenge"
+local car_color = os.getenv("CAR_COLOR") or "0.8,0.1,0.1"
+
+io.stderr:write(string.format("🏎️  %s - Dramatic Lap!\n\n", car))
+
+local profile = {
+    {0,    0,   100, 0,   1,  0},
+    {1,    100, 100, 0,   2,  0},
+    {2,    180, 100, 0,   3,  0},
+    {3,    250, 100, 0,   5,  0},
+    {4,    300, 100, 0,   6,  0},
+    {5,    330, 100, 0,   7,  0},
+    {6,    340, 100, 0,   7,  0},
+    {7,    340, 80,  0,   7,  0},
+    {8,    280, 0,   100, 6, -25},
+    {9,    150, 0,   100, 4, -40},
+    {10,   100, 50,  30,  3, -30},
+    {11,   130, 100, 0,   4,  0},
+    {13,   220, 100, 0,   5,  0},
+    {15,   300, 100, 0,   7,  0},
+    {17,   340, 100, 0,   7,  0},
+    {19,   340, 70,  0,   7, -10},
+    {20,   250, 0,   90,  5, -35},
+    {21,   120, 30,  40,  3,  30},
+    {22,   140, 80,  0,   4, -20},
+    {24,   240, 100, 0,   6,  0},
+    {26,   320, 100, 0,   7,  0},
+    {28,   340, 100, 0,   7,  0},
+    {29,   280, 0,   80,  6, -30},
+    {30,   180, 40,  40,  4, -45},
+    {31,   150, 80,  0,   4, -20},
+    {33,   250, 100, 0,   6,  0},
+    {35,   320, 100, 0,   7,  0},
+    {37,   340, 100, 0,   7,  0},
+    {38,   340, 100, 0,   7,  0},
+}
+
+local function lerp(t, kf)
+    for i = 1, #kf - 1 do
+        local k1, k2 = kf[i], kf[i + 1]
+        if t >= k1[1] and t <= k2[1] then
+            local a = (t - k1[1]) / (k2[1] - k1[1])
+            return {
+                speed = k1[2] + (k2[2] - k1[2]) * a,
+                throttle = k1[3] + (k2[3] - k1[3]) * a,
+                brake = k1[4] + (k2[4] - k1[4]) * a,
+                gear = math.floor(k1[5] + (k2[5] - k1[5]) * a + 0.5),
+                steering = k1[6] + (k2[6] - k1[6]) * a,
+            }
+        end
+    end
+    local last = kf[#kf]
+    return {speed = last[2], throttle = last[3], brake = last[4], gear = last[5], steering = last[6]}
+end
+
+io.stderr:write("🔄 Looping forever (Ctrl+C to stop)\n\n")
+
+local loop = 0
+while true do
+    loop = loop + 1
+    io.stderr:write(string.format("🏁 Lap %d - %s\n", loop, car))
+    
+    local t = 0
+    local frame = 0
+    
+    while t <= 38 do
+        local state = lerp(t, profile)
+        local rpm = 2000 + (state.speed * 25 * math.max(state.gear, 1))
+        
+        local json = string.format(
+            '{"timestamp":%.3f,"can_id":512,"speed":%.1f,"rpm":%.0f,"throttle":%.0f,"brake":%.0f,"gear":%d,"steering_angle":%.1f}',
+            t, state.speed, rpm, state.throttle, state.brake, state.gear, state.steering
+        )
+        print(json)
+        io.stdout:flush()
+        
+        frame = frame + 1
+        if frame % 100 == 0 then
+            io.stderr:write(string.format(
+                "   🏎️ %3.0f km/h | G%d | %5.0f RPM\n",
+                state.speed, state.gear, rpm
+            ))
+        end
+        
+        local target = os.clock() + 0.03
+        while os.clock() < target do end
+        
+        t = t + 0.05
+    end
+    
+    io.stderr:write("   ✅ Lap complete!\n\n")
+end

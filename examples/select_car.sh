@@ -19,12 +19,12 @@ echo ""
 read -p "Choice [1-6]: " choice
 
 case $choice in
-    1) CAR_NAME="Ferrari 488 Challenge"; CAR_COLOR="0.9,0.1,0.1" ;;
-    2) CAR_NAME="Ferrari F12 Berlinetta"; CAR_COLOR="0.8,0.0,0.2" ;;
-    3) CAR_NAME="McLaren P1"; CAR_COLOR="1.0,0.5,0.0" ;;
-    4) CAR_NAME="Porsche 911 GT3 Cup"; CAR_COLOR="0.0,0.4,0.8" ;;
-    5) CAR_NAME="Porsche Cayman GT4 Clubsport"; CAR_COLOR="0.9,0.9,0.0" ;;
-    6) CAR_NAME="Aston Martin V12 Zagato"; CAR_COLOR="0.0,0.5,0.3" ;;
+    1) CAR_NAME="Ferrari 488 Challenge" ;;
+    2) CAR_NAME="Ferrari F12 Berlinetta" ;;
+    3) CAR_NAME="McLaren P1" ;;
+    4) CAR_NAME="Porsche 911 GT3 Cup" ;;
+    5) CAR_NAME="Porsche Cayman GT4 Clubsport" ;;
+    6) CAR_NAME="Aston Martin V12 Zagato" ;;
     0) echo "Exiting..."; exit 0 ;;
     *) echo "Invalid choice!"; exit 1 ;;
 esac
@@ -32,10 +32,6 @@ esac
 echo ""
 echo "🏁 Launching $CAR_NAME..."
 echo ""
-
-# Save car choice to file (for tmux to read)
-echo "export CAR_NAME='$CAR_NAME'" > /tmp/apex_car.sh
-echo "export CAR_COLOR='$CAR_COLOR'" >> /tmp/apex_car.sh
 
 # Kill any existing session
 tmux kill-session -t apex 2>/dev/null
@@ -59,9 +55,9 @@ tmux send-keys -t $SESSION:1 "cd ~/project-apex && source setup_env.sh && sleep 
 tmux new-window -t $SESSION:2 -n 'RViz'
 tmux send-keys -t $SESSION:2 "cd ~/project-apex && source setup_env.sh && sleep 3 && QT_QPA_PLATFORM=xcb rviz2 -f f1_car" C-m
 
-# Window 3: Pipeline with CAR_NAME
+# Window 3: Pipeline
 tmux new-window -t $SESSION:3 -n "$CAR_NAME"
-tmux send-keys -t $SESSION:3 "cd ~/project-apex && source setup_env.sh && source /tmp/apex_car.sh && echo '🏎️ Car: \$CAR_NAME' && sleep 4 && luajit examples/run_multicar_pipeline.lua | ros2 run f1_telemetry_publisher can_publisher" C-m
+tmux send-keys -t $SESSION:3 "cd ~/project-apex && source setup_env.sh && export CAR_NAME='$CAR_NAME' && sleep 4 && luajit examples/run_multicar_pipeline.lua | ros2 run f1_telemetry_publisher can_publisher" C-m
 
 echo "🏎️ $CAR_NAME launching in tmux..."
 echo ""

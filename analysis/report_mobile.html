@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏎️ Project APEX - Lap Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 1rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 12px;
+        }
+        .header h1 {
+            color: #e94560;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: #888;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: #16213e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #0f3460;
+        }
+        .stat-value {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: #e94560;
+            font-weight: bold;
+        }
+        .stat-label {
+            color: #888;
+            margin-top: 0.5rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+        .section {
+            background: #16213e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 1px solid #0f3460;
+        }
+        .section h2 {
+            color: #e94560;
+            margin: 0 0 1rem 0;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
+        }
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+        th {
+            color: #e94560;
+            position: sticky;
+            top: 0;
+            background: #16213e;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            background: #e94560;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            background: #d63850;
+        }
+        @media (max-width: 768px) {
+            body { padding: 0.5rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            th, td { padding: 0.5rem; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏎️ Project APEX</h1>
+        <p>Dramatic Lap Analysis</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">Ferrari 488 Challenge @ Monza</p>
+    </div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">38.0s</div>
+            <div class="stat-label">Lap Time</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">340</div>
+            <div class="stat-label">Max Speed (km/h)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">211</div>
+            <div class="stat-label">Max Speed (mph)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">61,500</div>
+            <div class="stat-label">Max RPM</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">250</div>
+            <div class="stat-label">Avg Speed (km/h)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">29</div>
+            <div class="stat-label">Gear Changes</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>📈 Speed Trace</h2>
+        <img src="speed_trace.png" alt="Speed Trace">
+    </div>
+    
+    <div class="section">
+        <h2>🔴 Braking Zones</h2>
+        <table>
+            <thead>
+                <tr><th>Zone</th><th>Time</th><th>Entry</th><th>Exit</th><th>Lost</th><th>Brake</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>7.3s</td><td>319</td><td>102</td><td>216 km/h</td><td>100 bar</td></tr>
+                <tr><td>2</td><td>19.4s</td><td>308</td><td>124</td><td>184 km/h</td><td>90 bar</td></tr>
+                <tr><td>3</td><td>28.4s</td><td>316</td><td>174</td><td>142 km/h</td><td>80 bar</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Dashboard</a>
+</body>
+</html>
