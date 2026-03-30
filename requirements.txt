@@ -1,0 +1,28 @@
+# Core Python
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+
+# ROS 2 Build Dependencies (version-locked for compatibility)
+setuptools>=30.3.0,<80
+empy==3.3.4
+lark
+catkin_pkg
+rosidl-parser
+rosidl-runtime-py
+colcon-common-extensions
+ament-package
+
+# ROS 2 Python tools
+pyyaml
+vcstool
+
+# Optional: Web/Dashboard
+websockets>=11.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# Development
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0

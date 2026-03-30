@@ -65,3 +65,29 @@ config/secrets.json
 *.log
 _scratch/
 _scratch/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# ROS
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+*.bag
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+*.so
+*.o
+*.a

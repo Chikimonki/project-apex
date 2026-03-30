@@ -218,3 +218,19 @@ cd formula-student-apex
 
 # Run demo
 ./examples/demo_can_decoding/run.sh
+
+# Run simple pipeline
+.PHONY: pipeline
+pipeline:
+	luajit examples/run_pipeline.lua examples/data/sample_canbus.csv examples/data/decoded_output.csv
+
+# Quick test with monitoring
+.PHONY: pipeline-verbose
+pipeline-verbose:
+	MONITOR_INTERVAL=100 luajit examples/run_pipeline.lua $(INPUT) $(OUTPUT)
+
+# Verify output
+.PHONY: verify
+verify:
+	@echo "First 10 decoded frames:"
+	@head -n 11 examples/data/decoded_output.csv | column -t -s,
