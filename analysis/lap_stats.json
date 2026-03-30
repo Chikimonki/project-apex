@@ -1,0 +1,11 @@
+{
+  "lap_time_s": 38.0,
+  "max_speed_kph": 340.0,
+  "max_speed_mph": 211.26614,
+  "avg_speed_kph": 250.16031537450723,
+  "max_rpm": 61500.0,
+  "avg_rpm": 39777.05650459921,
+  "max_throttle_pct": 100.0,
+  "max_brake_pct": 100.0,
+  "gear_changes": 29
+}
