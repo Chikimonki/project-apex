@@ -1,6 +1,6 @@
 # 🏎️ APEX — Formula Student Telemetry Stack
 
-Built with Zig + LuaJIT + Perl + Julia + Python
+Built with Zig + LuaJIT + Python
 
 Video Demonstration: https://youtu.be/5NViE8uAu10
 
