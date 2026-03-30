@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project APEX - F1 Telemetry Demo</title>
+    <title>Project APEX - Live Demo</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             background: #0a0a0a;
             color: #e0e0e0;
-            min-height: 100vh;
         }
         .header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -21,216 +20,71 @@
         .header h1 {
             font-size: 2.5rem;
             color: #e94560;
-            margin-bottom: 0.5rem;
-        }
-        .header p {
-            font-size: 1.2rem;
-            color: #a0a0a0;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
-        .video-section {
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
             margin: 2rem 0;
-            text-align: center;
         }
-        .video-section video {
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 960px;
-            border: 2px solid #333;
-            border-radius: 8px;
+            height: 100%;
         }
-        .architecture {
-            background: #1a1a2e;
-            border-radius: 8px;
-            padding: 2rem;
+        .back-link {
+            display: inline-block;
             margin: 2rem 0;
-        }
-        .architecture h2 {
-            color: #e94560;
-            margin-bottom: 1rem;
-        }
-        .pipeline {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-        }
-        .pipeline-node {
-            background: #16213e;
-            border: 1px solid #0f3460;
-            border-radius: 6px;
-            padding: 0.8rem 1.2rem;
-            text-align: center;
-        }
-        .pipeline-node.highlight {
-            border-color: #e94560;
-            background: #1a1a2e;
-        }
-        .pipeline-arrow {
-            color: #e94560;
-            font-size: 1.5rem;
-        }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        .tech-card {
-            background: #16213e;
-            border: 1px solid #0f3460;
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        .tech-card h3 {
-            color: #e94560;
-            margin-bottom: 0.5rem;
-        }
-        .tech-card .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        .stat {
-            background: #16213e;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .stat .value {
-            font-size: 2rem;
-            color: #e94560;
-            font-weight: bold;
-        }
-        .stat .label {
-            color: #a0a0a0;
-            margin-top: 0.3rem;
-        }
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            border-top: 1px solid #222;
-        }
-        .footer a {
-            color: #e94560;
+            padding: 1rem 2rem;
+            background: #e94560;
+            color: #fff;
             text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
         }
-        @media (max-width: 768px) {
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .header h1 { font-size: 1.8rem; }
+        .back-link:hover {
+            background: #d63850;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>🏎️ Project APEX</h1>
-        <p>Real-Time F1 Telemetry Pipeline</p>
-        <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #666;">
-            Built in 48 hours | Zig + LuaJIT + ROS 2 + rviz2
-        </p>
+        <h1>🏎️ Project APEX - Live Demo</h1>
+        <p>Real-time F1 Telemetry Visualization</p>
     </div>
 
     <div class="container">
-        <div class="stats">
-            <div class="stat">
-                <div class="value">48h</div>
-                <div class="label">Build Time</div>
-            </div>
-            <div class="stat">
-                <div class="value">v100</div>
-                <div class="label">Decoder Version</div>
-            </div>
-            <div class="stat">
-                <div class="value">20 FPS</div>
-                <div class="label">Stream Rate</div>
-            </div>
-            <div class="stat">
-                <div class="value">SIMD</div>
-                <div class="label">Optimized</div>
-            </div>
+        <a href="../index.html" class="back-link">← Back to Home</a>
+        
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/uFRiiRYMs-g" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
         </div>
 
-        <div class="video-section">
-            <h2 style="color: #e94560; margin-bottom: 1rem;">Live Demo</h2>
-            <video controls poster="thumbnail.png">
-                <source src="f1_telemetry_demo.mp4" type="video/mp4">
-                <source src="f1_telemetry_demo.webm" type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <div class="architecture">
-            <h2>System Architecture</h2>
-            <div class="pipeline">
-                <div class="pipeline-node">📄 CAN Data<br><small>.csv / .asc</small></div>
-                <div class="pipeline-arrow">→</div>
-                <div class="pipeline-node highlight">⚡ Zig Decoder<br><small>SIMD optimized</small></div>
-                <div class="pipeline-arrow">→</div>
-                <div class="pipeline-node highlight">🔧 LuaJIT FFI<br><small>Pipeline</small></div>
-                <div class="pipeline-arrow">→</div>
-                <div class="pipeline-node">🤖 ROS 2<br><small>Jazzy</small></div>
-                <div class="pipeline-arrow">→</div>
-                <div class="pipeline-node highlight">📊 rviz2<br><small>3D Visualization</small></div>
-            </div>
-        </div>
-
-        <div class="tech-grid">
-            <div class="tech-card">
-                <div class="icon">⚡</div>
-                <h3>Zig Decoder</h3>
-                <p>Native CAN bus decoder with SIMD vectorization. 
-                   Processes 4 frames simultaneously using hardware vectors.</p>
-            </div>
-            <div class="tech-card">
-                <div class="icon">🔧</div>
-                <h3>LuaJIT FFI Bridge</h3>
-                <p>Zero-copy Foreign Function Interface connecting 
-                   Zig native code to the Lua pipeline orchestrator.</p>
-            </div>
-            <div class="tech-card">
-                <div class="icon">🤖</div>
-                <h3>ROS 2 Integration</h3>
-                <p>Custom F1Telemetry messages with real-time 
-                   publishing to the ROS 2 ecosystem.</p>
-            </div>
-            <div class="tech-card">
-                <div class="icon">📊</div>
-                <h3>3D Visualization</h3>
-                <p>Real-time rviz2 markers showing speed, RPM, 
-                   and throttle as animated 3D bars.</p>
-            </div>
-            <div class="tech-card">
-                <div class="icon">📄</div>
-                <h3>ASC Parser</h3>
-                <p>Industry-standard Vector .asc log file parser 
-                   for importing real CAN bus recordings.</p>
-            </div>
-            <div class="tech-card">
-                <div class="icon">🔮</div>
-                <h3>Coming Soon</h3>
-                <p>Julia-based statistical analysis, Assetto Corsa 
-                   integration, and WebSocket dashboard.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>
-            <a href="https://github.com/Chikimonki/project-apex">GitHub</a> |
-            Built with ❤️ and lots of ☕
-        </p>
+        <h2 style="color: #e94560; margin: 2rem 0 1rem;">What You're Seeing</h2>
+        <ul style="line-height: 2; color: #b0b0b0;">
+            <li>🔴 <strong>Red Bar</strong> = Vehicle Speed (0-350 km/h)</li>
+            <li>🟢 <strong>Green Bar</strong> = Engine RPM (0-18,000)</li>
+            <li>🔵 <strong>Blue Bar</strong> = Throttle Position (0-100%)</li>
+            <li>🟠 <strong>Orange Bar</strong> = Brake Pressure (0-100%)</li>
+            <li>⚙️ <strong>Yellow Text</strong> = Current Gear</li>
+        </ul>
     </div>
 </body>
 </html>

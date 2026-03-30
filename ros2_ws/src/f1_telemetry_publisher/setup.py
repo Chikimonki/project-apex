@@ -21,6 +21,7 @@ setup(
         'console_scripts': [
             'can_publisher = f1_telemetry_publisher.can_publisher:main',
             'visualizer = f1_telemetry_publisher.visualizer:main',
+            'visualizer_enhanced = f1_telemetry_publisher.visualizer_enhanced:main',
             'tf_publisher = f1_telemetry_publisher.tf_publisher:main',
         ],
     },
