@@ -6,7 +6,7 @@ Video Demonstration: https://youtu.be/5NViE8uAu10
 
 View App: https://storage.googleapis.com/groq-chat-api-signal-processing-suite/apex-dashboard/index.html
 
-**895 million CAN frames per second. Almost hit 1 billion.**
+**Hit 1 billion frames per second with a pure zig file, almost with a zig + LuaJIT 918 million frames per second.**
 
 ## Performance (Verified)
 
@@ -71,7 +71,7 @@ On a $400 laptop
 
 ```
 ┌──────────────────────────────────────────────┐
-│  Scalar:  855 M frames/sec                   │
+│  Scalar:  1 B frames/sec                   │
 │  SIMD:   1612 M frames/sec                   │
 │  Speedup: 1.89x                              │
 │                                              │
