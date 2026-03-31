@@ -48,7 +48,7 @@ This stack leverages **Zig's compile-time power and C ABI compatibility** with *
 THE SCALAR THROUGHPUT IS INSANE
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  862.8 MILLION CAN FRAMES PER SECOND
+  1 BILLION CAN FRAMES PER SECOND
   
   On a Dell laptop.
   From LuaJIT.
