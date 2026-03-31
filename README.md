@@ -2,7 +2,9 @@
 
 Built with Zig + LuaJIT + Python + Julia + Perl
 
-Video Demonstration: https://youtu.be/5NViE8uAu10
+Video DemonstrationS: https://youtu.be/5NViE8uAu10
+
+Motogp Version: https://youtu.be/XDdcpL066I0
 
 View App: https://storage.googleapis.com/groq-chat-api-signal-processing-suite/apex-dashboard/index.html
 
