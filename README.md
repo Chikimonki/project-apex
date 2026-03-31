@@ -2,7 +2,7 @@
 
 Built with Zig + LuaJIT + Python + Julia + Perl
 
-Video DemonstrationS: https://youtu.be/5NViE8uAu10
+Video Demonstrations: https://youtu.be/5NViE8uAu10
 
 Motogp Version: https://youtu.be/XDdcpL066I0
 
