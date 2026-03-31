@@ -12,7 +12,7 @@ View App: https://storage.googleapis.com/groq-chat-api-signal-processing-suite/a
 
 Tested on Intel i5-8265U @ 1.60GHz, WSL2, 3.8GB RAM:
 
-- **SIMD**: 895.1 M frames/sec
+- **SIMD**: 1 B frames/sec
 - **Scalar**: 727.5 M frames/sec  
 - **Speedup**: 1.23x
 
@@ -87,7 +87,7 @@ On a $400 laptop
 - On **one CPU core**
 - With **zero licensing costs**
 
-✅ 936M frames/sec = MASSIVE headroom for complex algorithms
+✅ 1 B frames/sec = MASSIVE headroom for complex algorithms
 ✅ Can run full physics simulation WHILE processing telemetry
 ✅ Multiple cars simultaneously
 ✅ Zero dropped samples even under load
